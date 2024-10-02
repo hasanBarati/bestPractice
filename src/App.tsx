@@ -1,18 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { RouterProvider } from 'react-router-dom'
-import router from './Router'
+import { RouterProvider } from "react-router-dom";
+import "./App.css";
+import router from "./Router";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const queryClient = new QueryClient();
   return (
-    <>
-      <RouterProvider router={router}/>
-    </>
-  )
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;
