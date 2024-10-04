@@ -16,23 +16,37 @@ export const api = Axios.create({
     },
 })
 
+// api.interceptors.request.use(
+//     async (config) => {
+//         const userProfile = window.localStorage.getItem('user')
+//         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+//         userProfile &&
+//             userProfile !== 'null' &&
+//             config.headers &&
+//             (config.headers as AxiosHeaders).set(
+//                 'Authorization',
+//                 `JWT ${JSON.parse(userProfile)?.token} `
+//             )
+//         return config
+//     },
+//     (error) => {
+//         Promise.reject(error)
+//     }
+// )
+
+
 api.interceptors.request.use(
-    async (config) => {
-        const userProfile = window.localStorage.getItem('user')
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        userProfile &&
-            userProfile !== 'null' &&
-            config.headers &&
-            (config.headers as AxiosHeaders).set(
-                'Authorization',
-                `JWT ${JSON.parse(userProfile)?.token} `
-            )
-        return config
-    },
+    (config) => {   
+    console.log(localStorage["token"]) 
+      config.headers.Authorization = 'bearer_token'; // Add the Authorization field with the value 'bearer_token' to the configuration headers
+      
+      return config;
+    }, 
     (error) => {
-        Promise.reject(error)
+      console.log("Request Error:", error)
+      return Promise.reject(error);
     }
-)
+  );
 
 api.interceptors.response.use(
     (response) => {
