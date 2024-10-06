@@ -3,8 +3,13 @@ import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./utils/protected-route";
 import Root from "./pages/Route";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+  },
   {
     path: "/",
     element: <Root />,
@@ -14,8 +19,13 @@ const router = createBrowserRouter([
         element: <Home />,
         index: true,
       },
+      // {
+      //   path: "/login",
+      //   element: <Login />,
+     
+      // },
       {
-        path: "/products/:category/:filter?",
+        path: "/products",
         element: <>product</>,
       },
 
@@ -25,6 +35,7 @@ const router = createBrowserRouter([
           {
             path: "/profile",
             element: <>profile</>,
+            
           },
           {
             path: "/editprofile",
