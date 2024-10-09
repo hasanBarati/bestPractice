@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+     .content{
+        @apply relative
+     }
+    .footer{
+      @apply fixed bottom-0 flex justify-between w-full bg-lime-100 h-14  items-center 
+    }
+}
